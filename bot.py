@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import Application , CommandHandler ,ContextTypes , MessageHandler , filters
 import sqlite3
-from googletrans import Translator
+from deep_translator import googletranslator
 
 TOKEN ="8723401814:AAFeMFSM0BRFalkfFzi-boZ2RkdVxRyReak"
 
@@ -33,10 +33,9 @@ async def stats(update: Update , context):
 
 async def translataing(update: Update, context:ContextTypes.DEFAULT_TYPE)-> None:
     """Translate the user message"""
-    translator = Translator()
     text = update.message.text
     try:
-        translated = await translator.translate(text, dest='de')
+        translated = googletranslator(source = 'auto' , target='de')tranlate(text)
 
         await  update.message.reply_text(f"{text} means {translated.text} in Deutsch \nwhat else?")
     except Exception as e:
