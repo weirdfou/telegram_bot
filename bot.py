@@ -10,7 +10,7 @@ async def start(update: Update , context):
     try:
         con = sqlite3.connect('users.db')
         c = con.cursor()
-        c.execute("INSERT OR REPLACE INTO users (user_id, first_name, last_seen) VALUES (?,?, datetime('now'))"
+        c.execute("INSERT OR REPLACE INTO users (user_id, first_name, last_seen) VALUES (?,?,?, datetime('now'))"
                   (user.id, user.first_name))
 
         con.commit()
