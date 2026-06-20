@@ -10,7 +10,7 @@ async def start(update: Update , context):
     try:
         con = sqlite3.connect('users.db')
         c = con.cursor()
-        c.execute("INSERT OR REPLACE INTO users (user_id ,first_name ,last_seen) VALUES (?,?, datetime('now'))"
+        c.execute("INSERT OR REPLACE INTO users (user_id, first_name, last_seen) VALUES (?,?, datetime('now'))"
                   (user.id, user.first_name))
 
         con.commit()
@@ -29,14 +29,7 @@ async def stats(update: Update , context):
     con.close()
     await update.message.reply_text(f"bitches number: {count}")
 
-async def me(update: Update, context):
-    user = update.effective_user
-    con = sqlite3.connect('users.db')
-    c =con.cursor()
-    c.execute("SELECT last_seen FROM users WHERE user_id = ? ", (user.id,))
-    resault = c.fetchone()
-    con.close()
-    await update.message.reply_text(f"")
+
 
 async def translataing(update: Update, context:ContextTypes.DEFAULT_TYPE)-> None:
     """Translate the user message"""
